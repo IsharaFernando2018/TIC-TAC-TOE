@@ -4,21 +4,46 @@ on:
   push:
     branches:
       - main
-
-
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
+    services:
+      sonarqube:
+        image: sonarqube:lts
+        ports:
+          - 9000:9000
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - uses: sonarsource/sonarqube-scan-action@master
+          fetch-depth: 0
+      - name: Run SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-  
+          SONAR_HOST_URL: http://localhost:9000
+
+# name: Build
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+
+# jobs:
+#   build:
+#     name: Build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+#       - uses: sonarsource/sonarqube-scan-action@master
+#         env:
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+#########################
 
 # name: Build,Analyze,scan
 
