@@ -66,8 +66,11 @@ jobs:
         run: docker run -d --name ticgame -p 3000:3000 ferdi2018/tic-tac-toe:latest
 
   deploy:
-    needs: build-scan
-    
+    needs: build-scan        
+    runs-on: ubuntu-latest    
+    steps:
+      - name: Deployment step
+        run: echo "Deploying app..."
 
 
 
