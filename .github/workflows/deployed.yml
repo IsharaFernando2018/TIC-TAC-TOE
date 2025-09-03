@@ -62,6 +62,9 @@ jobs:
       - name: Trivy image scan
         run: trivy image ferdi2018/tic-tac-toe:latest > trivyimage.txt
 
+      - name: Run the container
+        run: docker run -d --name ticgame -p 3000:3000 sevenajay/tic-tac-toe:latest
+
 
 
 
