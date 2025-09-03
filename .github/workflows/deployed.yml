@@ -46,7 +46,7 @@ jobs:
         run: trivy fs . > trivyfs.txt
 
       - name: Upload Trivy scan report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: trivy-scan-report
           path: trivyfs.txt
