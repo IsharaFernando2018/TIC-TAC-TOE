@@ -69,8 +69,8 @@ jobs:
     needs: build-scan        
     runs-on: ubuntu-latest    
     steps:
-      - name: Deployment step
-        run: echo "Deploying app..."
+      - name: Docker pull image
+        run: docker pull ferdi2018/tic-tac-toe:latest
 
 
 
