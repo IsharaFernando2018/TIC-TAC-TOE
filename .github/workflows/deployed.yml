@@ -57,14 +57,11 @@ jobs:
           docker tag tic-tac-toe ferdi2018/tic-tac-toe:latest
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
           docker push ferdi2018/tic-tac-toe:latest
-          
-       
+    
       - name: Trivy image scan
         run: trivy image ferdi2018/tic-tac-toe:latest > trivyimage.txt
 
-      - name: Run the container
-        run: docker run -d --name ticgame -p 3000:3000 ferdi2018/tic-tac-toe:latest
-
+      
   deploy:
     needs: build-scan        
     runs-on: ubuntu-latest    
@@ -72,6 +69,11 @@ jobs:
       - name: Docker pull image
         run: docker pull ferdi2018/tic-tac-toe:latest
 
+      - name: Trivy image scan
+        run: trivy image ferdi2018/tic-tac-toe:latest > trivyimagedeploy.txt
+
+      - name: Run the container
+        run: docker run -d --name ticgame -p 3000:3000 ferdi2018/tic-tac-toe:latest
 
 
 
