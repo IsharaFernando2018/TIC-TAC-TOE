@@ -8,8 +8,8 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  sonarqube:
-    name: SonarQube Analysis
+  build-scan:
+    name: Build
     runs-on: ubuntu-latest  # ✅ Changed: Using GitHub-hosted runner to avoid Windows SSL issues
     steps:
       # Checkout repository
@@ -65,8 +65,10 @@ jobs:
       - name: Run the container
         run: docker run -d --name ticgame -p 3000:3000 ferdi2018/tic-tac-toe:latest
 
+  deploy:
+    needs: build-scan
+    
 
-        ##
 
 
 
