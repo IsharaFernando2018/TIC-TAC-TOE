@@ -33,7 +33,11 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          ##
+
+      - name: Docker build and push
+        |
+        docker build -t 
+        
 
 
 
