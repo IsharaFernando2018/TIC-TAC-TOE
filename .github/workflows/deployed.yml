@@ -9,8 +9,7 @@ on:
 jobs:
   build-analyze-scan:
     name: SonarQube
-    #runs-on: ubuntu-latest
-    runs-on: [se]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
