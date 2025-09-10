@@ -19,6 +19,8 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: npm Install
+        run: npm install
 
 
 # name: Build
