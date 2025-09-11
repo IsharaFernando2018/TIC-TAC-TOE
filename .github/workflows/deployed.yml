@@ -10,6 +10,8 @@ jobs:
   build-analyze-scan:
     name: SonarQube
     runs-on: ubuntu-latest
+    outputs:
+      SHA: ${{ steps.set_sha.outputs.sha }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -47,6 +49,10 @@ jobs:
 
       - name: Trivy Image Scan - SHA
         run: trivy image ferdi2018/tic-tac-toe:${{ github.sha }} > trivyimage.txt
+
+      - name: Set SHA output
+        id: set_sha
+        run: echo "sha=${GITHUB_SHA}" >> $GITHUB_OUTPUT
 
   deploy:
     needs: build-analyze-scan
