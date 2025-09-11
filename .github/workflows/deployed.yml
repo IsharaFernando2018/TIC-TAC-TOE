@@ -41,8 +41,9 @@ jobs:
           docker tag tic-tac-toe ferdi2018/tic-tac-toe:${{ github.sha }}
           docker push ferdi2018/tic-tac-toe:latest
           docker push ferdi2018/tic-tac-toe:${{ github.sha }}
-          
-        
+
+      - name: Trivy Image Scan
+        run: trivy image myusername/myimage:tag > trivyimage.txt
 
 
 
