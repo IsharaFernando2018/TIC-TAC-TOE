@@ -56,7 +56,7 @@ jobs:
         run: docker pull ferdi2018/tic-tac-toe:latest
 
       - name: Deploy to Container
-        run: docker run -d -p 3000:3000 -name game ferdi2018/tic-tac-toe:latest
+        run: docker run -d -p 3000:3000 --name game ferdi2018/tic-tac-toe:latest
 
 
 # name: Build
