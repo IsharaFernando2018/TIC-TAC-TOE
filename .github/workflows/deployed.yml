@@ -37,6 +37,9 @@ jobs:
       - name: Docker build and push
         run: |
           docker build -t tic-tac-toe .
+          docker tag tic-tac-toe ferdi2018/tic-tac-toe:latest
+          docker push ferdi2018/tic-tac-toe:latest
+          
         
 
 
