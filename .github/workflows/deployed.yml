@@ -68,10 +68,10 @@ jobs:
         run: docker rm -f game || true
 
       - name: Pull the Docker image
-        run: docker pull ferdi2018/tic-tac-toe:${{ needs.build.outputs.SHA }}
+        run: docker pull ferdi2018/tic-tac-toe:${{ needs.build-analyze-scan.outputs.SHA }}
 
       - name: Deploy to Container
-        run: docker run --name game ferdi2018/tic-tac-toe:${{ needs.build.outputs.SHA }}
+        run: docker run --name game ferdi2018/tic-tac-toe:${{ needs.build-analyze-scan.outputs.SHA }}
 
 
 
