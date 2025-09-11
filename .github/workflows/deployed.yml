@@ -52,11 +52,21 @@ jobs:
     needs: build-analyze-scan
     runs-on: ubuntu-latest
     steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Remove existing container if exists
+        run: docker rm -f game || true
+
       - name: Pull the Docker image
         run: docker pull ferdi2018/tic-tac-toe:latest
 
       - name: Deploy to Container
         run: docker run -d -p 3000:3000 --name game ferdi2018/tic-tac-toe:latest
+
 
 
 # name: Build
