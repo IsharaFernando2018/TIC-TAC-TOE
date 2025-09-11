@@ -71,7 +71,7 @@ jobs:
         run: docker pull ferdi2018/tic-tac-toe:${{ needs.build-analyze-scan.outputs.SHA }}
 
       - name: Deploy to Container
-        run: docker run --name game -p 3005:80 ferdi2018/tic-tac-toe:${{ needs.build-analyze-scan.outputs.SHA }}
+        run: docker run --name game -p 3000:3000 ferdi2018/tic-tac-toe:${{ needs.build-analyze-scan.outputs.SHA }}
 
       - name: Update kubeconfig
         run: aws eks --region ap-south-1 update-kubeconfig --name EKS_CLOUD
