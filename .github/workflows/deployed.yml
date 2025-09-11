@@ -35,8 +35,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Docker build and push
-        |
-        docker build -t 
+        run: |
+          docker build -t tic-tac-toe .
         
 
 
