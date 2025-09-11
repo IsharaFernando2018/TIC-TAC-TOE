@@ -48,6 +48,12 @@ jobs:
       - name: Trivy Image Scan - SHA
         run: trivy image ferdi2018/tic-tac-toe:${{ github.sha }} > trivyimage.txt
 
+  deploy:
+    needs: build-analyze-scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull the Docker image
+        run: docker pull ferdi2018/tic-tac-toe:latest
 
 
 # name: Build
